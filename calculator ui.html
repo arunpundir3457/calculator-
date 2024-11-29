@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Calculator</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: lightgreen;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            height: 70vh;
+            width: 30vw;
+            background-color: grey;
+            border: 5px solid black;
+            margin-top: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #inp {
+            height: 20%;
+            width: 100%;
+            background-color: white;
+            font-size: 2vw;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 10px;
+            box-sizing: border-box;
+            word-wrap: break-word;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-around;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        button {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:active {
+            background-color: #ddd;
+        }
+
+        .operator {
+            background-color: rgb(241, 152, 152);
+        }
+
+        .equals {
+            background-color: rgb(131, 230, 131);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .calculator {
+                width: 80%;
+                height: auto;
+            }
+
+            #inp {
+                font-size: 5vw;
+                height: 15%;
+            }
+
+            button {
+                height: 50px;
+                width: 50px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div id="inp"></div>
+        
+        <div class="button-row">
+            <button onclick="changeInp('AC')" class="operator">AC</button>
+            <button onclick="changeInp('back')" class="operator material-icons">backspace</button>
+            <button onclick="changeInp('+/-')" class="operator">+/-</button>
+            <button onclick="changeInp('/')" class="operator">÷</button>
+        </div>
+        <div class="button-row">
+            <button onclick="changeInp('7')">7</button>
+            <button onclick="changeInp('8')">8</button>
+            <button onclick="changeInp('9')">9</button>
+            <button onclick="changeInp('*')" class="operator">×</button>
+        </div>
+        <div class="button-row">
+            <button onclick="changeInp('4')">4</button>
+            <button onclick="changeInp('5')">5</button>
+            <button onclick="changeInp('6')">6</button>
+            <button onclick="changeInp('-')" class="operator">−</button>
+        </div>
+        <div class="button-row">
+            <button onclick="changeInp('1')">1</button>
+            <button onclick="changeInp('2')">2</button>
+            <button onclick="changeInp('3')">3</button>
+            <button onclick="changeInp('+')" class="operator">+</button>
+        </div>
+        <div class="button-row">
+            <button onclick="changeInp('%')">%</button>
+            <button onclick="changeInp('0')">0</button>
+            <button onclick="changeInp('.')">.</button>
+            <button onclick="changeInp('=')" class="equals">=</button>
+        </div>
+    </div>
+
+    <script>
+        function changeInp(a) {
+            const display = document.getElementById("inp");
+            if (a === "=") {
+                display.innerHTML = eval(display.innerHTML || "0");
+            } else if (a === "AC") {
+                display.innerHTML = "";
+            } else if (a === "back") {
+                display.innerHTML = display.innerHTML.slice(0, -1);
+            } else {
+                display.innerHTML += a;
+            }
+        }
+    </script>
+</body>
+</html>
